@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: monospace, sans-serif;
+    line-height: 1.6;
+    padding-bottom: 60px; /* Space for footer */
+}
+
+
+header {
+    background-color: #504b5c;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.filters {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.filters input, .filters select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.book-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-cover {
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+}
+
+.book-info h3 {
+    margin-bottom: 0.5rem;
+    color: #333;
+
+}
+
+.book-info p {
+    margin-bottom: 0.3rem;
+    color: #726e81;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #333;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.pagination button.active {
+    background-color: #333;
+    color: white;
+}
+
+footer {
+    background-color: #504b5c;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

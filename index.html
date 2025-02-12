@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favourite Books Collection</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <h1>Favourite Books Collection</h1>
+</header>
+<main>
+    <div class="filters">
+        <input type="text" id="searchInput" placeholder="Search books...">
+        <select id="sortSelect">
+            <option value="title">Sort by Title</option>
+            <option value="author">Sort by Author</option>
+            <option value="year">Sort by Year</option>
+        </select>
+    </div>
+    <div class="books-grid" id="booksGrid">
+        <div class="book-card">
+            <img class="book-cover" src="./resources/images/1984.jpg" alt="Book 1">
+            <h3>Book 1</h3>
+            <p>Author: Author 1</p>
+            <p>Year: 2020</p>
+        </div>
+        <div class="book-card">
+            <img class="book-cover" src="./resources/images/the-brothers-karamazov.jpg" alt="Book 2">
+            <h3>Book 2</h3>
+            <p>Author: Author 1</p>
+            <p>Year: 2020</p>
+        </div>
+        <div class="book-card">
+            <img class="book-cover" src="./resources/images/at-the-existentialist-cafe.jpg" alt="Book 3">
+            <h3>Book 3</h3>
+            <p>Author: Author 1</p>
+            <p>Year: 2020</p>
+        </div>
+        <div class="book-card">
+            <img class="book-cover" src="./resources/images/the-catcher-in-the-rye.jpg" alt="Book 4">
+            <h3>Book 4</h3>
+            <p>Author: Author 1</p>
+            <p>Year: 2020</p>
+        </div>
+        <div class="book-card">
+            <img class="book-cover" src="./resources/images/the-concept-of-anxiety.jpg" alt="Book 5">
+            <h3>Book 5</h3>
+            <p>Author: Author 1</p>
+            <p>Year: 2020</p>
+        </div>
+    </div>
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be dynamically inserted here -->
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2025 My Book Collection. All rights reserved.</p>
+</footer>
+</body>
+</html>
