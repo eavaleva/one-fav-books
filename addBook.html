@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favourite Books Collection Page 1</title>
+    <title>Add Book Page 2</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js" defer></script>
 </head>
@@ -18,15 +18,20 @@
         </ul>
     </nav>
 </header>
-
 <main>
-    <div class="filters">
-
-        <label class="filters-label">Search
-            <input type="text" id="searchInput" placeholder="Search books...">
-        </label>
-        <label for="genreFilter" class="filters-label">Filter
-            <select id="genreFilter">
+    <h1>Add here another book</h1>
+    <form>
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author" required>
+        <label for="year">Year</label>
+        <input type="date" id="year" name="year" required>
+        <label for="summary">Summary</label>
+        <textarea id="summary" name="summary" required></textarea>
+        <div class="form-group">
+            <label for="genre">Genre</label>
+            <select id="genre" name="genre" required>
                 <option value="">All Genres</option>
                 <option value="Psychology">Psychology</option>
                 <option value="Politics">Politics</option>
@@ -40,17 +45,11 @@
                 <option value="Fantasy">Fantasy</option>
                 <option value="Epic">Epic</option>
             </select>
-        </label>
-        <label for="sortSelect" class="filters-label">Sort
-            <select id="sortSelect">
-                <option value="title">Sort by Title</option>
-                <option value="author">Sort by Author</option>
-                <option value="year">Sort by Year</option>
-            </select>
-        </label>
-    </div>
-    <div class="books-grid" id="booksGrid"> </div>
-    <div class="pagination" id="pagination"> </div>
+        </div>
+        <label for="cover">Cover</label>
+        <input type="url" id="cover" name="cover">
+        <button type="submit">Add Book</button>
+    </form>
 </main>
 <footer>
     <p>&copy; 2025 My Book Collection. All rights reserved.</p>

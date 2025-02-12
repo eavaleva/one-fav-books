@@ -3,6 +3,98 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Define colors */
+:root {
+    --primary-color: #544e63;
+    --secondary-color: #867da1;
+    --tertiary-color: #ebe9f6;
+    --fourtery-color: #726e81;
+    --light-color: #f9f9f9;
+    --dark-color: #504b5c;
+    --white-color: #fff;
+    --black-color: #000;
+}
+
+/* Small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+    .book-card {
+        padding: 0.5rem;
+    }
+    /*nav ul {*/
+    /*    display: none;*/
+    /*    flex-direction: column;*/
+    /*    gap: 1rem;*/
+    /*    transition: max-height 0.3s ease-out;*/
+    /*    overflow: hidden;*/
+    /*    max-height: 0;*/
+    /*}*/
+    /*nav ul.open {*/
+    /*    display: flex;*/
+    /*    max-height: 500px; !* Adjust based on content *!*/
+    /*}*/
+    /*.burger-menu {*/
+    /*    display: block;*/
+    /*    cursor: pointer;*/
+    /*}*/
+    .filters {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+/* Medium devices (tablets, 600px to 768px) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .book-card {
+        padding: 1rem;
+    }
+    .burger-menu {
+        display: none;
+    }
+    nav ul {
+        flex-direction: row;
+        gap: 1.5rem;
+    }
+    .filters {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Large devices (desktops, 769px and up) */
+@media only screen and (min-width: 769px) {
+    body {
+        font-size: 18px;
+    }
+    .books-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .book-card {
+        padding: 1.5rem;
+    }
+    /*.burger-menu {*/
+    /*    display: none;*/
+    /*}*/
+    /*nav ul {*/
+    /*    flex-direction: row;*/
+    /*    gap: 2rem;*/
+    /*}*/
+    .filters {
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+}
 
 body {
     font-family: monospace, sans-serif;
@@ -12,11 +104,33 @@ body {
 
 
 header {
-    background-color: #504b5c;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     text-align: center;
     padding: 1rem;
+}nav {
+     background-color: var(--secondary-color);
+     padding: 1rem;
+ }
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
+
+nav a {
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+nav a.active {
+    background-color: var(--secondary-color);
+}
+
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -26,13 +140,23 @@ main {
 .filters {
     margin-bottom: 2rem;
     display: flex;
+    justify-content: flex-end;
     gap: 1rem;
+
 }
 
 .filters input, .filters select {
     padding: 0.5rem;
-    border: 1px solid #ddd;
+    border: 1px solid var(--tertiary-color);
+    background-color: var(--tertiary-color);
     border-radius: 4px;
+    font-family: monospace, sans-serif;
+    color: var(--primary-color);
+}
+.filters-label {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    align-content: center;
 }
 
 .books-grid {
@@ -43,12 +167,61 @@ main {
 }
 
 .book-card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--light-color);
     padding: 1rem;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--light-color);
     display: flex;
     flex-direction: column;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    cursor: pointer;
+}
+
+.book-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.card-front {
+    position: relative;
+}
+
+.card-back {
+    background-color: var(--tertiary-color);
+    transform: rotateY(180deg);
+    padding: 1rem;
+    border: 1px solid var(--light-color);
+    border-radius: 8px;
+}
+.card-back h3 {
+    color: var(--dark-color);
+    padding: 0.5rem;
+}
+
+.book-summary {
+    color: var(--fourtery-color);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    max-height: 80vh;
+    padding: 0.5rem;
+    overflow-y: scroll;
+}
+
+.flip-hint {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    color: var(--fourtery-color);
+    font-size: 2rem;
 }
 
 .book-cover {
@@ -57,19 +230,19 @@ main {
     object-fit: contain;
     border-radius: 4px;
     margin-bottom: 1rem;
-    background-color: #f0f0f0;
+    background-color: var(--tertiary-color);
     padding: 0.5rem;
 }
 
 .book-info h3 {
     margin-bottom: 0.5rem;
-    color: #333;
+    color: var(--dark-color);
 
 }
 
 .book-info p {
     margin-bottom: 0.3rem;
-    color: #726e81;
+    color: var(--fourtery-color);
 }
 
 .pagination {
@@ -77,24 +250,25 @@ main {
     justify-content: center;
     gap: 0.5rem;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .pagination button {
     padding: 0.5rem 1rem;
-    border: 1px solid #333;
-    background-color: white;
+    border: 1px solid var(--fourtery-color);
+    background-color: var(--light-color);
     cursor: pointer;
     border-radius: 4px;
 }
 
 .pagination button.active {
-    background-color: #333;
-    color: white;
+    background-color: var(--fourtery-color);
+    color: var(--white-color);
 }
 
 footer {
-    background-color: #504b5c;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     text-align: center;
     padding: 1rem;
     position: fixed;
