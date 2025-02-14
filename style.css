@@ -217,10 +217,10 @@ main {
 .book-summary {
     color: var(--primary-color);
     font-size: 0.9rem;
+    max-height: 80%;
     line-height: 1.4;
-    max-height: 80vh;
     padding: 0.5rem;
-    overflow-y: scroll;
+    overflow: scroll;
 }
 
 .flip-hint {
