@@ -6,11 +6,11 @@
 /* Define colors */
 :root {
     --primary-color: #544e63;
-    --secondary-color: #867da1;
+    --secondary-color: #8475A68E;
     --tertiary-color: #ebe9f6;
-    --fourtery-color: #726e81;
+    --fourtery-color: rgba(187, 177, 223, 0.87);
     --light-color: #f9f9f9;
-    --dark-color: #504b5c;
+    --dark-color: #4a455a;
     --white-color: #efefef;
     --black-color: #000;
 }
@@ -103,11 +103,13 @@ body {
 }
 
 header, nav ul {
-    background-color: var(--secondary-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #8475A68E;
     color: var(--white-color);
     text-align: left;
-    position: relative;
-    padding: 1rem;
+    padding: 0.2rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -116,22 +118,24 @@ header, nav ul {
 
 header h1 {
     font-size: 2rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
 }
 
 nav ul {
     list-style: none;
+    display: flex;
+    gap: 1rem;
 }
 
 nav a {
-    color: var(--white-color);
+    color: var(--light-color);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
 }
 
 nav a.active {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 main {
@@ -211,7 +215,7 @@ main {
 }
 
 .book-summary {
-    color: var(--fourtery-color);
+    color: var(--primary-color);
     font-size: 0.9rem;
     line-height: 1.4;
     max-height: 80vh;
@@ -249,7 +253,7 @@ h2, h3 {
 
 .book-info, p {
     margin-bottom: 0.3rem;
-    color: var(--fourtery-color);
+    color: var(--dark-color);
 }
 
 .pagination {
@@ -262,7 +266,7 @@ h2, h3 {
 
 .pagination button {
     padding: 0.5rem 1rem;
-    border: 1px solid var(--fourtery-color);
+    border: 1px solid var(--primary-color);
     background-color: var(--light-color);
     cursor: pointer;
     border-radius: 4px;
@@ -274,11 +278,11 @@ h2, h3 {
 }
 
 footer {
-    background-color: var(--primary-color);
-    color: var(--white-color);
+    background-color: var(--secondary-color);
+    color: var(--tertiary-color);
     text-align: center;
     padding: 1rem;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
     max-height: 50px;
