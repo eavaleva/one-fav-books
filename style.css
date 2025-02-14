@@ -46,6 +46,29 @@
         flex-direction: column;
         align-items: flex-end;
     }
+    .add-book-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .form-footer {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .cover-input {
+        width: 100%;
+    }
+
+    .cover-input input[type="file"] {
+        max-width: 100%;
+    }
+
+    .add-book-form button[type="submit"] {
+        width: 100%;
+    }
 }
 
 /* Medium devices (tablets, 600px to 768px) */
@@ -120,6 +143,10 @@ header h1 {
     font-size: 2rem;
     margin-left: 1rem;
 }
+section {
+    position: relative;
+    padding-top:70px;
+}
 
 nav ul {
     list-style: none;
@@ -138,6 +165,18 @@ nav a.active {
     background-color: var(--primary-color);
 }
 
+.home-section {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+}
+.bullets-style {
+    padding-left: 20px;
+    margin-left: 20px;
+    list-style-type: circle;
+}
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -277,12 +316,141 @@ h2, h3 {
     color: var(--white-color);
 }
 
+/*.add-book-form*/
+/*{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr 2fr;*/
+/*    gap: 1rem;*/
+/*    margin-bottom: 2rem;*/
+/*}*/
+
+#add-book {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#add-book h2 {
+    font-family: fantasy, sans-serif;
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#add-book h3 {
+    font-family: fantasy, sans-serif;
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+.add-book-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Make summary and form footer take full width */
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.add-book-form label {
+    font-family: fantasy, sans-serif;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.add-book-form input,
+.add-book-form select,
+.add-book-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    background-color: var(--tertiary-color);
+    border-radius: 4px;
+    font-family: monospace, sans-serif;
+    color: var(--primary-color);
+}
+
+.add-book-form textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.cover-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cover-input input[type="file"] {
+    max-width: 200px;
+    background-color: var(--tertiary-color);
+    padding: 0.5rem;
+}
+
+.add-book-form button[type="submit"] {
+    padding: 0.8rem 3rem;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    font-family: fantasy, sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.cover-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.cover-input input[type="file"] {
+    max-width: 200px;
+    background-color: var(--tertiary-color);
+    padding: 0.5rem;
+}
+
+.add-book-form button[type="submit"] {
+    padding: 0.8rem 3rem;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 4px;
+    font-family: fantasy, sans-serif;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
 footer {
     background-color: var(--secondary-color);
     color: var(--tertiary-color);
     text-align: center;
     padding: 1rem;
-    position: sticky;
+    position: fixed;
     bottom: 0;
     width: 100%;
     max-height: 50px;

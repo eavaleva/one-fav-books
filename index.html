@@ -12,14 +12,57 @@
     <h1>Favourite Books Collection</h1>
     <nav class="nav-bar">
         <ul>
-            <li><a href="home.html">HOME</a></li>
-            <li>|<a href="index.html">COLLECTION</a>|</li>
-            <li><a href="addBook.html">ADD BOOK</a></li>
+            <li><a href="#home">HOME</a></li>
+            <li>|<a href="#collection">COLLECTION</a>|</li>
+            <li><a href="#add-book">ADD BOOK</a></li>
         </ul>
     </nav>
 </header>
-
 <main>
+<section id="home" class="home-section">
+<h2>Individuele opdracht 1 Front-end</h2>
+<h3>Web Development with HTML, CSS, JavaScript</h3>
+    <p>
+    Ontwerp en ontwikkel een webapplicatie waarmee je voorwerpen van een persoonlijke
+    verzameling kunt bekijken en bijhouden. De keuze van de verzameling,
+    of het nu gaat om muziek, foto's, postzegels, games, munten,
+    auto's of andere bijzondere items, ligt volledig bij jou.
+    Deze opdracht voer je individueel uit, maar gebruik de
+    intervisiegroep om ideeën op te doen. Elke teamlid in de intervisiegroep heeft een
+    ander verzameling.
+    </p>
+    <br>
+    <em>Je bouwt een statische website en maakt hierbij enkel gebruik van HTML, CSS (zonder externe bibliotheken, maar met eigen CSS), en JavaScript.</em><br>
+    <br>
+    <strong>Minimumeisen voor een voldoende</strong>
+    <br>
+    <ul class="bullets-style">
+        <li>de website moet minimaal 3 pagina's bevatten, die aan elkaar zijn gelinkt via een navigatiebalk voor eenvoudig bladeren.</li>
+        <li>het paginanummer moet zichtbaar zijn in de titel van je browsertab.</li>
+        <li>toon 13 items van je verzameling in een weergave van 5 items per pagina. Items moeten hard-coded zijn in je app (in een js-array in een apart js-bestand) en kunnen worden getoond in tabelvorm of als cards/tegels.</li>
+        <li>per item moeten ten minste 4 attributen worden weergegeven, waaronder een naam, een sorteerveld-attribuut, een categorisatie-attribuut, en een afbeelding (direct zichtbaar, met een alt-tekst, afbeeldingen in een apart map zetten).</li>
+        <li>mogelijkheid tot op- en aflopend sorteren, duidelijk zichtbaar voor de gebruiker.</li>
+        <li>mogelijkheid om producten op basis van categorie te bekijken.</li>
+        <li>de website moet responsive zijn.</li>
+    </ul>
+    <br>
+    <strong>Extra</strong>
+    <br>
+    <ul class="bullets-style">
+        <li>Voeg een variabele in de code toe waarmee je kunt aangeven hoeveel items per pagina moeten worden getoond. Documenteer dit in je ontwerpdocument met een screenshot van de relevante code.</li>
+        <li>Implementeer de mogelijkheid voor gebruikers om items toe te voegen. Toon bijvoorbeeld aan dat bij 16 items een extra pagina wordt toegevoegd. Gebruik voor deze items een dummyafbeelding.</li>
+    </ul>
+    <br>
+    <strong>Bronnen</strong>
+    <br>
+    <ul class="bullets-style">
+        <li>[bol.com](https://www.bol.com/nl/)</li>
+        <li>[goodreads.com](https://www.goodreads.com/)</li>
+        <li>[amazon.com](https://www.amazon.com/)</li>
+    </ul>
+</section> <!-- end of home section -->
+<!--<main>-->
+<section id="collection">
     <div class="filters">
 
         <label class="filters-label">Search
@@ -51,6 +94,51 @@
     </div>
     <div class="books-grid" id="booksGrid"> </div>
     <div class="pagination" id="pagination"> </div>
+</section> <!-- end of collection section -->
+
+    <section id="add-book">
+        <h2>Add You Favorite Book Here</h2>
+        <form id="addBookForm" class="add-book-form">
+            <!-- Title and Author row -->
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" name="author" required>
+            </div>
+
+            <!-- Year and Genre row -->
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year" required>
+            </div>
+
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre" required>
+            </div>
+
+            <!-- Summary full width -->
+            <div class="form-group full-width">
+                <label for="summary">Summary:</label>
+                <textarea id="summary" name="summary" required></textarea>
+            </div>
+
+            <!-- Footer full width -->
+            <div class="form-group full-width">
+                <div class="form-footer">
+                    <div class="cover-input">
+                        <label for="cover">Cover</label>
+                        <input type="file" id="cover" name="cover" accept="image/*">
+                    </div>
+                    <button type="submit">SUBMIT</button>
+                </div>
+            </div>
+        </form>
+    </section>
 </main>
 <footer>
     <h4>&copy; 2025 My Book Collection. All rights reserved.</h4>
