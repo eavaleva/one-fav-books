@@ -137,6 +137,7 @@ header, nav ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -196,7 +197,7 @@ main {
     border: 1px solid var(--tertiary-color);
     background-color: var(--tertiary-color);
     border-radius: 4px;
-    font-family: monospace, sans-serif;
+    font-family: fantasy, monospace, sans-serif;
     color: var(--primary-color);
 }
 .filters-label {
@@ -330,7 +331,7 @@ h2, h3 {
 }
 
 #add-book h2 {
-    font-family: fantasy, sans-serif;
+    font-family: fantasy, monospace, sans-serif;
     color: var(--primary-color);
     font-size: 2.5rem;
     margin-bottom: 0.5rem;

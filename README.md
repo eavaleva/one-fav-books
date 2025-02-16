@@ -1,5 +1,5 @@
 # Individuele opdracht Front-end
-## HTML , CSS , JavaScript
+## HTML | CSS | JavaScript
 
 ## Verzameling van mijn favoriete boeken.
 
@@ -32,4 +32,4 @@ Je bouwt een statische website en maakt hierbij enkel gebruik van HTML, CSS (zon
 
 #### Bronnen: 
 
-Afbeelingen van de boeken: [bol.com](https://www.bol.com/nl/), [goodreads.com](https://www.goodreads.com/),d [amazon.com](https://www.amazon.com/)
+Afbeelingen van de boeken: [bol.com](https://www.bol.com/nl/), [goodreads.com](https://www.goodreads.com/), [amazon.com](https://www.amazon.com/)

@@ -91,6 +91,14 @@
                 <option value="year">Sort by Year</option>
             </select>
         </label>
+        <label for="amountSelect" class="filters-label">Amount
+            <select id="amountSelect">
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="18">18</option>
+                <option value="24">24</option>
+            </select>
+        </label>
     </div>
     <div class="books-grid" id="booksGrid"> </div>
     <div class="pagination" id="pagination"> </div>
@@ -133,6 +141,8 @@
                     <div class="cover-input">
                         <label for="cover">Cover</label>
                         <input type="file" id="cover" name="cover" accept="image/*">
+                        <input type="hidden" id="coverDataUrl" name="coverDataUrl">
+                        <img id="coverPreview" style="display: none; max-width: 100px; margin-top: 10px;" alt="Cover preview">
                     </div>
                     <button type="submit">SUBMIT</button>
                 </div>

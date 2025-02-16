@@ -2,7 +2,7 @@ import { books } from '/resources/books.js';
 
 
 // Pagination settings
-const booksPerPage = 6;
+let booksPerPage = 6;
 let currentPage = 1;
 
 const booksGrid = document.getElementById('booksGrid');
@@ -72,6 +72,14 @@ function updatePagination(totalBooks) {
     }
 }
 
+// Function choose amount of books per page select option event
+function chooseAmountOfBooksPerPage(event) {
+    booksPerPage = event.target.value;
+    currentPage = 1;
+    displayBooks(filterAndSortBooks());
+
+}
+
 // Function to filter and sort books
 function filterAndSortBooks() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -93,12 +101,61 @@ function filterAndSortBooks() {
     return filteredBooks;
 }
 
+
+// Handle cover upload
+function handleCoverUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Store the data URL in a hidden input
+            document.getElementById('coverDataUrl').value = e.target.result;
+
+            // Show preview
+            const previewImg = document.getElementById('coverPreview');
+            if (previewImg) {
+                previewImg.src = e.target.result;
+                previewImg.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const newBook = {
+        title: form.title.value,
+        author: form.author.value,
+        year: form.year.value,
+        genre: form.genre.value,
+        summary: form.summary.value,
+        cover: document.getElementById('coverDataUrl').value || '/resources/images/placeholder.png'
+    };
+    // add new book to the list
+    books.unshift(newBook);
+    // reset form and display books
+    form.reset();
+    const previewImg = document.getElementById('coverPreview');
+    if (previewImg) {
+        previewImg.src = '';
+        previewImg.style.display = 'none';
+    }
+    document.getElementById('coverDataUrl').value = '';
+    currentPage = 1;
+    displayBooks();
+
+    // Show success message
+    alert('Book added successfully!');
+}
+
+
 // Function to handle input events
 function handleInputEvents() {
     currentPage = 1;
     displayBooks(filterAndSortBooks());
 }
-
 // Event listeners
 searchInput.addEventListener('input', handleInputEvents);
 sortSelect.addEventListener('change', handleInputEvents);
@@ -107,4 +164,11 @@ genreFilter.addEventListener('change', handleInputEvents);
 // Initial display of books
 document.addEventListener('DOMContentLoaded', () => {
    displayBooks();
+    const form = document.getElementById('addBookForm');
+    const coverInput = document.getElementById('cover');
+    const booksPerPageSelect = document.getElementById('amountSelect');
+
+    form.addEventListener('submit', handleFormSubmit);
+    coverInput.addEventListener('change', handleCoverUpload);
+    booksPerPageSelect.addEventListener('change', chooseAmountOfBooksPerPage);
 });
