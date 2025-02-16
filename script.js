@@ -10,6 +10,12 @@ const paginationContainer = document.getElementById('pagination');
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
 const genreFilter = document.getElementById('genreFilter');
+const form = document.getElementById('addBookForm');
+const coverInput = document.getElementById('cover');
+const booksPerPageSelect = document.getElementById('amountSelect');
+const burgerMenu = document.querySelector('.burger-menu');
+const navLinks = document.querySelector('.nav-links');
+const links = document.querySelectorAll('.nav-links a');
 
 // Function to display books for current page
 function displayBooks(filteredBooks = books) {
@@ -70,6 +76,24 @@ function updatePagination(totalBooks) {
         });
         paginationContainer.appendChild(button);
     }
+}
+
+// Function to dynamically create select options for genres based on the books data
+function createGenreOptions() {
+    const genres = books.reduce((acc, book) => {
+        if (!acc.includes(book.genre)) {
+            acc.push(book.genre);
+        }
+        return acc;
+    }, []);
+    genreFilter.innerHTML = '<option value="">All Genres</option>';
+
+    genres.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre;
+        option.textContent = genre;
+        genreFilter.appendChild(option);
+    });
 }
 
 // Function choose amount of books per page select option event
@@ -137,11 +161,11 @@ function handleFormSubmit(event) {
     books.unshift(newBook);
     // reset form and display books
     form.reset();
-    const previewImg = document.getElementById('coverPreview');
-    if (previewImg) {
-        previewImg.src = '';
-        previewImg.style.display = 'none';
-    }
+    // const previewImg = document.getElementById('coverPreview');
+    // if (previewImg) {
+    //     previewImg.src = '';
+    //     previewImg.style.display = 'none';
+    // }
     document.getElementById('coverDataUrl').value = '';
     currentPage = 1;
     displayBooks();
@@ -150,6 +174,29 @@ function handleFormSubmit(event) {
     alert('Book added successfully!');
 }
 
+// Burger menu functionality
+function toggleMenu() {
+    burgerMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        burgerMenu.classList.toggle('active');
+    });
+
+    // Close menu when a link is clicked
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !burgerMenu.contains(e.target)) {
+            navLinks.classList.remove('active');
+            burgerMenu.classList.remove('active');
+        }
+    });
+}
 
 // Function to handle input events
 function handleInputEvents() {
@@ -160,15 +207,13 @@ function handleInputEvents() {
 searchInput.addEventListener('input', handleInputEvents);
 sortSelect.addEventListener('change', handleInputEvents);
 genreFilter.addEventListener('change', handleInputEvents);
+form.addEventListener('submit', handleFormSubmit);
+coverInput.addEventListener('change', handleCoverUpload);
+booksPerPageSelect.addEventListener('change', chooseAmountOfBooksPerPage);
 
 // Initial display of books
 document.addEventListener('DOMContentLoaded', () => {
    displayBooks();
-    const form = document.getElementById('addBookForm');
-    const coverInput = document.getElementById('cover');
-    const booksPerPageSelect = document.getElementById('amountSelect');
-
-    form.addEventListener('submit', handleFormSubmit);
-    coverInput.addEventListener('change', handleCoverUpload);
-    booksPerPageSelect.addEventListener('change', chooseAmountOfBooksPerPage);
+   createGenreOptions();
+   toggleMenu();
 });

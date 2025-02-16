@@ -9,9 +9,14 @@
 </head>
 <body>
 <header>
-    <h1>Favourite Books Collection</h1>
+    <h1>Favourite Books</h1>
     <nav class="nav-bar">
-        <ul>
+        <div class="burger-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-links">
             <li><a href="#home">HOME</a></li>
             <li>|<a href="#collection">COLLECTION</a>|</li>
             <li><a href="#add-book">ADD BOOK</a></li>
@@ -56,39 +61,29 @@
     <strong>Bronnen</strong>
     <br>
     <ul class="bullets-style">
-        <li>[bol.com](https://www.bol.com/nl/)</li>
-        <li>[goodreads.com](https://www.goodreads.com/)</li>
-        <li>[amazon.com](https://www.amazon.com/)</li>
+        <li>Bol --> www.bol.com/nl</li>
+        <li>Goodreads --> www.goodreads.com</li>
+        <li>Amazon --> www.amazon.com</li>
     </ul>
 </section> <!-- end of home section -->
 <!--<main>-->
 <section id="collection">
     <div class="filters">
-
+        <!-- Search Filter-->
         <label class="filters-label">Search
-            <input type="text" id="searchInput" placeholder="Search books...">
+            <input type="text" id="searchInput" placeholder="Books...">
         </label>
+        <!-- Genre Filter-->
         <label for="genreFilter" class="filters-label">Filter
             <select id="genreFilter">
-                <option value="">All Genres</option>
-                <option value="Psychology">Psychology</option>
-                <option value="Politics">Politics</option>
-                <option value="Geopolitics">Geopolitics</option>
-                <option value="Philosophy">Philosophy</option>
-                <option value="Linguistics">Linguistics</option>
-                <option value="Fiction">Fiction</option>
-                <option value="Science Fiction">Science Fiction</option>
-                <option value="Psychological Fiction">Psychological Fiction</option>
-                <option value="Political Satire">Political Satire</option>
-                <option value="Fantasy">Fantasy</option>
-                <option value="Epic">Epic</option>
             </select>
         </label>
+        <!-- Sort and Amount Filter-->
         <label for="sortSelect" class="filters-label">Sort
             <select id="sortSelect">
-                <option value="title">Sort by Title</option>
-                <option value="author">Sort by Author</option>
-                <option value="year">Sort by Year</option>
+                <option value="title">By Title</option>
+                <option value="author">By Author</option>
+                <option value="year">By Year</option>
             </select>
         </label>
         <label for="amountSelect" class="filters-label">Amount
@@ -100,12 +95,15 @@
             </select>
         </label>
     </div>
+    <!-- Books Grid -->
     <div class="books-grid" id="booksGrid"> </div>
+    <!-- Pagination -->
     <div class="pagination" id="pagination"> </div>
-</section> <!-- end of collection section -->
-
+</section>
+    <!-- end of collection section -->
+    <!-- Add Book Section -->
     <section id="add-book">
-        <h2>Add You Favorite Book Here</h2>
+        <h3>Add Your Favorite Book Here</h3>
         <form id="addBookForm" class="add-book-form">
             <!-- Title and Author row -->
             <div class="form-group">
@@ -121,7 +119,7 @@
             <!-- Year and Genre row -->
             <div class="form-group">
                 <label for="year">Year:</label>
-                <input type="text" id="year" name="year" required>
+                <input type="number" id="year" name="year" required>
             </div>
 
             <div class="form-group">
@@ -142,9 +140,8 @@
                         <label for="cover">Cover</label>
                         <input type="file" id="cover" name="cover" accept="image/*">
                         <input type="hidden" id="coverDataUrl" name="coverDataUrl">
-                        <img id="coverPreview" style="display: none; max-width: 100px; margin-top: 10px;" alt="Cover preview">
                     </div>
-                    <button type="submit">SUBMIT</button>
+                    <button type="submit" id="submitButton">SUBMIT</button>
                 </div>
             </div>
         </form>
