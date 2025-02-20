@@ -1,4 +1,4 @@
-import { books } from '/resources/books.js';
+import { books } from './resources/books.js';
 
 
 // Pagination settings
@@ -161,11 +161,6 @@ function handleFormSubmit(event) {
     books.unshift(newBook);
     // reset form and display books
     form.reset();
-    // const previewImg = document.getElementById('coverPreview');
-    // if (previewImg) {
-    //     previewImg.src = '';
-    //     previewImg.style.display = 'none';
-    // }
     document.getElementById('coverDataUrl').value = '';
     currentPage = 1;
     displayBooks();
