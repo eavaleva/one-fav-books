@@ -159,6 +159,55 @@
             </div>
         </form>
     </section>
+    <!-- Edit Book Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit Book</h3>
+            <form id="editBookForm" class="add-book-form">
+                <!-- Title and Author row -->
+                <div class="form-group">
+                    <label for="editTitle">Title:</label>
+                    <input type="text" id="editTitle" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editAuthor">Author:</label>
+                    <input type="text" id="editAuthor" name="author" required>
+                </div>
+
+                <!-- Year and Genre row -->
+                <div class="form-group">
+                    <label for="editYear">Year:</label>
+                    <input type="number" id="editYear" name="year" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="editGenre">Genre</label>
+                    <input type="text" id="editGenre" name="genre" required>
+                </div>
+
+                <!-- Summary full width -->
+                <div class="form-group full-width">
+                    <label for="editSummary">Summary:</label>
+                    <textarea id="editSummary" name="summary" required></textarea>
+                </div>
+
+                <!-- Footer full width -->
+                <div class="form-group full-width">
+                    <div class="form-footer">
+                        <div class="cover-input">
+                            <label for="editCover">Cover</label>
+                            <input type="file" id="editCover" name="cover" accept="image/*">
+                            <input type="hidden" id="editCoverDataUrl" name="coverDataUrl">
+                            <img id="editCoverPreview" style="display: none; max-width: 100px; max-height: 150px; margin-top: 10px;">
+                        </div>
+                        <button type="submit" id="editSubmitButton">UPDATE</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </main>
 <footer>
     <h4>&copy; 2025 My Book Collection. All rights reserved.</h4>
