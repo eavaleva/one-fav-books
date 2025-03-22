@@ -252,12 +252,12 @@ main {
 }
 
 .book-summary {
-    color: var(--primary-color);
+
     font-size: 0.9rem;
     max-height: 80%;
     line-height: 1.4;
     padding: 0.5rem;
-    overflow: scroll;
+    color: var(--primary-color);
 }
 
 .flip-hint {
@@ -414,11 +414,11 @@ h2, h3 {
 }
 
 .book-actions {
-    display: flex;
+    display: revert;
     gap: 1rem;
     margin-top: 1rem;
     align-items: center;
-    position: absolute;
+    position: relative;
 }
 .edit-button {
     padding: 0.5rem 1rem;
@@ -437,6 +437,12 @@ h2, h3 {
     shape-rendering: crispEdges;
 }
 
+.edit-cover-preview {
+    display: none;
+    max-width: 100px;
+    max-height: 150px;
+    margin-top: 10px;
+}
 .delete-button {
     padding: 0.5rem 1rem;
     background-color: red;
