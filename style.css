@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 /* Define colors */
 :root {
     --primary-color: rgba(84, 78, 99, 0.93);
@@ -18,16 +19,20 @@
     body {
         font-size: 14px;
     }
+
     .books-grid {
         grid-template-columns: 1fr;
     }
+
     .book-card {
         padding: 0.5rem;
     }
+
     .filters {
         flex-direction: column;
         align-items: flex-end;
     }
+
     .add-book-form {
         display: flex;
         flex-direction: column;
@@ -58,20 +63,25 @@
     body {
         font-size: 16px;
     }
+
     .books-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
     .book-card {
         padding: 1rem;
     }
+
     nav ul {
         flex-direction: row;
         gap: 1.5rem;
     }
+
     .filters {
         flex-direction: row;
         justify-content: space-between;
     }
+
     header {
         padding: 0.75rem 2rem;
     }
@@ -86,12 +96,15 @@
     body {
         font-size: 18px;
     }
+
     .books-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+
     .book-card {
         padding: 1.5rem;
     }
+
     .filters {
         flex-direction: row;
         justify-content: flex-end;
@@ -99,7 +112,7 @@
 }
 
 body {
-    font-family: fantasy,  sans-serif;
+    font-family: fantasy, sans-serif;
     line-height: 1.6;
     padding-bottom: 60px;
 }
@@ -123,9 +136,10 @@ header h1 {
     font-size: 2rem;
     margin-left: 1rem;
 }
+
 section {
     position: relative;
-    padding-top:70px;
+    padding-top: 70px;
 }
 
 nav ul {
@@ -152,11 +166,13 @@ nav a.active {
     margin-bottom: 2rem;
     color: var(--primary-color);
 }
+
 .bullets-style {
     padding-left: 20px;
     margin-left: 20px;
     list-style-type: circle;
 }
+
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -180,6 +196,7 @@ main {
     box-shadow: 0 1px 2px var(--primary-color);
 
 }
+
 .filters-label {
     color: var(--primary-color);
     font-size: 0.9rem;
@@ -228,6 +245,7 @@ main {
     border: 1px solid var(--light-color);
     border-radius: 8px;
 }
+
 .card-back h3 {
     color: var(--dark-color);
     padding: 0.5rem;
@@ -264,6 +282,7 @@ h2, h3 {
     margin-bottom: 1rem;
     color: var(--dark-color);
 }
+
 .book-info h3 {
     margin-bottom: 0.5rem;
     color: var(--dark-color);
@@ -424,6 +443,7 @@ h2, h3 {
     cursor: pointer;
     text-transform: uppercase;
 }
+
 footer {
     background-color: var(--secondary-color);
     color: var(--tertiary-color);
@@ -516,6 +536,7 @@ nav {
     .nav-links.active {
         right: 0;
     }
+
     .burger-menu.active .bar:nth-child(1) {
         transform: rotate(45deg) translate(8px, 6px);
     }
