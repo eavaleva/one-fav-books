@@ -14,18 +14,22 @@ const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
 const genreFilter = document.getElementById('genreFilter');
 const form = document.getElementById('addBookForm');
+const editBookForm = document.getElementById('editBookForm');
 const coverInput = document.getElementById('cover');
+const editCoverInput = document.getElementById('editCover');
 const booksPerPageSelect = document.getElementById('amountSelect');
 const burgerMenu = document.querySelector('.burger-menu');
 const navLinks = document.querySelector('.nav-links');
 const links = document.querySelectorAll('.nav-links a');
+const editModal = document.getElementById('editModal');
+const closeModalBtn = document.querySelector('.close');
 
 // Function to fetch books from the API
 async function fetchBooks() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            throw new Error(`HTTP error! Failed to fetch books, status: ${response.status}`);
+             throw new Error(`HTTP error! Failed to fetch books, status: ${response.status}`);
         }
 
         const data = await response.json();
@@ -69,6 +73,54 @@ async function fetchBooks() {
     }
 }
 
+// Function to handle editing a book
+function handleEditBook(bookId) {
+    const book = books.find(book => book.id === bookId);
+    if (!book) {
+        alert('Book not found');
+        return;
+    }
+
+    // Populate the edit form with book data
+    document.getElementById('editTitle').value = book.title;
+    document.getElementById('editAuthor').value = book.author;
+    document.getElementById('editYear').value = book.year;
+    document.getElementById('editGenre').value = book.genre;
+    document.getElementById('editSummary').value = book.summary;
+    document.getElementById('editCoverDataUrl').value = book.cover;
+
+    // Store book ID in a data attribute for submission
+    editBookForm.dataset.bookId = bookId;
+
+    // Show the modal
+    editModal.style.display = 'block';
+}
+
+// Function to handle deleting a book
+async function handleDeleteBook(bookId) {
+    if (confirm('Are you sure you want to delete this book?')) {
+        try {
+            const response = await fetch(`${API_URL}/${bookId}`, {
+                method: 'DELETE'
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            // Remove book from local array
+            books = books.filter(book => book.id !== bookId);
+
+            // Refresh display
+            displayBooks(filterAndSortBooks());
+            alert('Book deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting book:', error);
+            alert(`Failed to delete book: ${error.message}`);
+        }
+    }
+}
+
 // Function to display books for current page
 function displayBooks(filteredBooks = books) {
     const startIndex = (currentPage - 1) * booksPerPage;
@@ -102,13 +154,34 @@ function displayBooks(filteredBooks = books) {
                 <div class="book-summary">
                     ${book.summary}
                 </div>
+                <div class="book-actions">
+                <button class="edit-button" data-id="${book.id}">Edit</button>
+                <button class="delete-button" data-id="${book.id}">Delete</button>
+                </div>
                 <span class="flip-hint">↺</span>
             </div>
         `;
 
         // Add click event for flipping
-        bookCard.addEventListener('click', () => {
-            bookCard.classList.toggle('flipped');
+        bookCard.addEventListener('click', (e) => {
+            // Don't flip if clicking on a button
+            if (!e.target.closest('button')) {
+                bookCard.classList.toggle('flipped');
+            }
+        });
+
+        // Add click event for edit button
+        const editButton = bookCard.querySelector('.edit-button');
+        editButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card flip
+            handleEditBook(e.target.dataset.id);
+        });
+
+        // Add click event for delete button
+        const deleteButton = bookCard.querySelector('.delete-button');
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent card flip
+            handleDeleteBook(e.target.dataset.id);
         });
 
         booksGrid.appendChild(bookCard);
@@ -154,10 +227,9 @@ function createGenreOptions() {
 
 // Function choose amount of books per page select option event
 function chooseAmountOfBooksPerPage(event) {
-    booksPerPage = event.target.value;
+    booksPerPage = parseInt(event.target.value);
     currentPage = 1;
     displayBooks(filterAndSortBooks());
-
 }
 
 // Function to filter and sort books
@@ -181,8 +253,7 @@ function filterAndSortBooks() {
     return filteredBooks;
 }
 
-
-// Handle cover upload
+// Handle cover upload for add form
 function handleCoverUpload(event) {
     const file = event.target.files[0];
     if (file) {
@@ -202,6 +273,27 @@ function handleCoverUpload(event) {
     }
 }
 
+// Handle cover upload for edit form
+function handleEditCoverUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            // Store the data URL in a hidden input
+            document.getElementById('editCoverDataUrl').value = e.target.result;
+
+            // Show preview
+            const previewImg = document.getElementById('editCoverPreview');
+            if (previewImg) {
+                previewImg.src = e.target.result;
+                previewImg.style.display = 'block';
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Handle add book form submission
 async function handleFormSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -266,6 +358,52 @@ async function handleFormSubmit(event) {
     }
 }
 
+// Handle edit book form submission
+async function handleEditFormSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const bookId = form.dataset.bookId;
+
+    const updatedBook = {
+        id: bookId,
+        title: document.getElementById('editTitle').value,
+        author: document.getElementById('editAuthor').value,
+        year: parseInt(document.getElementById('editYear').value),
+        genre: document.getElementById('editGenre').value,
+        summary: document.getElementById('editSummary').value,
+        cover: document.getElementById('editCoverDataUrl').value || books.find(b => b.id === bookId).cover
+    };
+
+    try {
+        const response = await fetch(`${API_URL}/${bookId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedBook)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        // Update the book in the local array
+        const bookIndex = books.findIndex(book => book.id === bookId);
+        if (bookIndex !== -1) {
+            books[bookIndex] = updatedBook;
+        }
+
+        // Close modal and refresh display
+        editModal.style.display = 'none';
+        displayBooks(filterAndSortBooks());
+
+        alert("Your book has been updated successfully");
+    } catch (error) {
+        console.error('Error updating book:', error);
+        alert(`Failed to update book: ${error.message}`);
+    }
+}
+
 // Burger menu functionality
 function toggleMenu() {
     burgerMenu.addEventListener('click', () => {
@@ -290,6 +428,21 @@ function toggleMenu() {
     });
 }
 
+// Modal functionality
+function setupModal() {
+    // Close modal when clicking X button
+    closeModalBtn.addEventListener('click', () => {
+        editModal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target === editModal) {
+            editModal.style.display = 'none';
+        }
+    });
+}
+
 // Function to handle input events
 function handleInputEvents() {
     currentPage = 1;
@@ -301,7 +454,11 @@ searchInput.addEventListener('input', handleInputEvents);
 sortSelect.addEventListener('change', handleInputEvents);
 genreFilter.addEventListener('change', handleInputEvents);
 form.addEventListener('submit', handleFormSubmit);
+editBookForm.addEventListener('submit', handleEditFormSubmit);
 coverInput.addEventListener('change', handleCoverUpload);
+if (editCoverInput) {
+    editCoverInput.addEventListener('change', handleEditCoverUpload);
+}
 booksPerPageSelect.addEventListener('change', chooseAmountOfBooksPerPage);
 
 // Initial display of books
@@ -309,4 +466,5 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchBooks();
     createGenreOptions();
     toggleMenu();
+    setupModal();
 });
